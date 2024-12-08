@@ -297,7 +297,6 @@ footer {
     color: white;
     padding: 25px 20px;
     text-align: center;
-    border-radius: 15px;
     margin-top: 25px;
     box-shadow: 0 8px 15px var(--soft-shadow);
     position: relative;
@@ -370,11 +369,11 @@ footer .copyright {
 
 @media screen and (max-width: 600px) {
     footer {
-        padding: 20px 15px;
+        padding: 15px 15px;
     }
 
     footer h3 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
     }
 
     footer .footer-links {
@@ -382,6 +381,6 @@ footer .copyright {
     }
 
     footer .footer-links i {
-        font-size: 1rem;
+        font-size: 1.2rem;
     }
 }
