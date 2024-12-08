@@ -12,7 +12,7 @@
         { "id": "transportation", "name": "वाहतूक सेवा", "icon": "fas fa-bus" },
         { "id": "education", "name": "शैक्षणिक सेवा", "icon": "fas fa-graduation-cap" },
         { "id": "automobile", "name": "ऑटोमोबाइल सर्विस", "icon": "fas fa-car-alt" },
-        { "id": "dairy", "name": "दुग्ध उत्पादन", "icon": "fas fa-glass-milk" },
+        { "id": "dairy", "name": "दुग्ध उत्पादन", "icon": "fa-solid fa-cow" },
         { "id": "clothing", "name": "कपडे दुकान", "icon": "fas fa-tags" },
         { "id": "financial", "name": "आर्थिक सेवा", "icon": "fas fa-money-bill-wave" }
                 ],
