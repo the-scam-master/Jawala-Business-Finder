@@ -4,8 +4,18 @@
         { "id": "electronics", "name": "इलेक्ट्रॉनिक्स", "icon": "fas fa-plug" },
         { "id": "tailors", "name": "टेलर", "icon": "fas fa-tshirt" },
         { "id": "agriculture", "name": "शेती संबंधित", "icon": "fas fa-tractor" },
-        { "id": "medical", "name": "वैद्यकीय सेवा", "icon": "fas fa-briefcase-medical" }
-    ],
+        { "id": "medical", "name": "वैद्यकीय सेवा", "icon": "fas fa-briefcase-medical" },
+        { "id": "restaurants", "name": "रेस्टोरंट", "icon": "fas fa-utensils" },
+        { "id": "salons", "name": "सलून", "icon": "fas fa-cut" },
+        { "id": "hardware", "name": "हार्डवेयर दुकान", "icon": "fas fa-tools" },
+        { "id": "stationery", "name": "स्टेशनरी", "icon": "fas fa-pencil-alt" },
+        { "id": "transportation", "name": "वाहतूक सेवा", "icon": "fas fa-bus" },
+        { "id": "education", "name": "शैक्षणिक सेवा", "icon": "fas fa-graduation-cap" },
+        { "id": "automobile", "name": "ऑटोमोबाइल सर्विस", "icon": "fas fa-car" },
+        { "id": "dairy", "name": "दुग्ध व्यवसाय", "icon": "fas fa-milk-bottle" },
+        { "id": "clothing", "name": "कपडे", "icon": "fas fa-tshirt" },
+        { "id": "financial", "name": "आर्थिक सेवा", "icon": "fas fa-rupee-sign" }
+                ],
     "businesses": [
         { "id": "1", "category": "groceries", "shopName": "श्री राम किराणा स्टोर", "ownerName": "राहुल पाटील", "contactNumber": "9876543210" },
         { "id": "2", "category": "electronics", "shopName": "न्यू टेक इलेक्ट्रॉनिक्स", "ownerName": "सुरेश देशमुख", "contactNumber": "9876543211" },
