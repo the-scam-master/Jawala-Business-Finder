@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;600;700&family=Mukta:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700&family=Noto+Sans+Devanagari:wght@300;400;600&display=swap');
 
 :root {
     --primary-color: #2C5F2D;        /* Deep Forest Green */
@@ -7,12 +7,15 @@
     --background-color: #F5F5F5;     /* Light Gray */
     --text-color: #333333;           /* Dark Charcoal */
     --card-background: #FFFFFF;      /* Pure White */
+    --soft-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --hover-shadow: 0 10px 20px rgba(0,0,0,0.12);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 body {
@@ -34,9 +37,9 @@ header {
     color: white;
     text-align: center;
     padding: 25px;
-    border-radius: 15px;
+    border-radius: 12px;
     margin-bottom: 25px;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    box-shadow: var(--soft-shadow);
 }
 
 header h1 {
@@ -45,6 +48,7 @@ header h1 {
     font-weight: 700;
     letter-spacing: 0.5px;
     color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
 }
 
 .controls {
@@ -60,9 +64,9 @@ header h1 {
     border: 2px solid var(--secondary-color);
     border-radius: 25px;
     font-size: 1rem;
-    background-color: white;
+    background-color: var(--card-background);
+    box-shadow: var(--soft-shadow);
     transition: all 0.3s ease;
-    font-family: 'Noto Sans Devanagari', sans-serif;
 }
 
 .search-container input:focus {
@@ -90,17 +94,16 @@ header h1 {
     padding: 15px;
     border-radius: 12px;
     background-color: var(--card-background);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: var(--soft-shadow);
     cursor: pointer;
-    transition: all 0.3s ease;
     min-height: 120px;
     transform-origin: center;
-    border: 2px solid transparent;
+    transition: all 0.3s ease;
 }
 
 .category-item:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: var(--hover-shadow);
 }
 
 .category-item:focus-visible {
@@ -109,9 +112,9 @@ header h1 {
 }
 
 .category-item.selected {
-    border-color: var(--primary-color);
-    background-color: #f0f8ff;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    background-color: var(--secondary-color);
+    color: white;
+    box-shadow: var(--hover-shadow);
 }
 
 .category-item i {
@@ -121,12 +124,30 @@ header h1 {
     transition: transform 0.3s ease;
 }
 
+.category-item.selected i {
+    color: white;
+}
+
 .category-item span {
     font-family: 'Mukta', 'Noto Sans Devanagari', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     text-align: center;
     font-weight: 600;
     color: var(--text-color);
+}
+
+.category-item.selected span {
+    color: white;
+}
+
+.selected-category-name {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .business-grid {
@@ -144,7 +165,6 @@ header h1 {
     margin-bottom: 15px;
     border-bottom: 2px solid var(--accent-color);
     padding-bottom: 10px;
-    font-family: 'Mukta', 'Noto Sans Devanagari', sans-serif;
 }
 
 .category-header i {
@@ -156,14 +176,14 @@ header h1 {
     background-color: var(--card-background);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
+    box-shadow: var(--soft-shadow);
     border-left: 4px solid var(--primary-color);
+    transition: all 0.3s ease;
 }
 
 .business-card:hover {
     transform: translateX(10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    box-shadow: var(--hover-shadow);
 }
 
 .business-card h4 {
@@ -171,7 +191,6 @@ header h1 {
     color: var(--primary-color);
     margin-bottom: 10px;
     font-weight: 600;
-    font-family: 'Mukta', 'Noto Sans Devanagari', sans-serif;
 }
 
 .business-card p {
@@ -192,15 +211,14 @@ header h1 {
 }
 
 .no-results {
-    text-align: center;
-    color: var(--primary-color);
-    padding: 40px;
-    background: linear-gradient(145deg, #f0f9ff, #ffffff);
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(145deg, #f0f9ff, #ffffff);
+    border-radius: 15px;
+    box-shadow: var(--soft-shadow);
 }
 
 .no-results::before {
@@ -210,9 +228,9 @@ header h1 {
 }
 
 .no-results p {
+    color: var(--primary-color);
     font-size: 1.2rem;
     margin-bottom: 20px;
-    font-family: 'Noto Sans Devanagari', sans-serif;
 }
 
 @media screen and (max-width: 600px) {
@@ -232,8 +250,11 @@ header h1 {
         min-height: 100px;
     }
 
-    .controls input {
-        font-size: 0.95rem;
-        padding: 10px 15px;
+    .category-item i {
+        font-size: 2rem;
+    }
+
+    .category-item span {
+        font-size: 0.85rem;
     }
 }
