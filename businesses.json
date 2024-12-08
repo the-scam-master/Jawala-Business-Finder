@@ -1,7 +1,12 @@
 {
 "categories": [
     { "id": "medical", "name": "वैद्यकीय सेवा", "icon": "fa-solid fa-hospital" },
-    { "id": "government_services", "name": "सरकारी सेवा", "icon": "fa-regular fa-building-columns" },
+    
+    { "id": "government_services", "name": "सरकारी सेवा", "icon": "fa-solid fa-building-columns" },
+    { "id": "government_services", "name": "सरकारी सेवा", "icon": "fas fa-landmark" },
+    { "id": "government_services", "name": "सरकारी सेवा", "icon": "fas fa-city" },
+    { "id": "government_services", "name": "सरकारी सेवा", "icon": "fas fa-institution" }
+    
     { "id": "police_services", "name": "पोलीस सेवा", "icon": "fas fa-shield-alt" },
     { "id": "healthcare_facilities", "name": "आरोग्य सुविधा", "icon": "fa-solid fa-briefcase-medical" },
     { "id": "water_services", "name": "पाणी पुरवठा", "icon": "fas fa-tint" },
