@@ -27,14 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render category grid
     function renderCategoryGrid(categories) {
         categoryGrid.innerHTML = '';
+        
+        // Create "All Categories" item first
+        const allCategoriesItem = createAllCategoriesItem();
+        categoryGrid.appendChild(allCategoriesItem);
+
+        // Then add other categories
         categories.forEach(category => {
             const categoryItem = createCategoryItem(category);
             categoryGrid.appendChild(categoryItem);
         });
-
-        // Add "All Categories" option
-        const allCategoriesItem = createAllCategoriesItem();
-        categoryGrid.appendChild(allCategoriesItem);
     }
 
     // Create category item
@@ -76,8 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         categoryItem.classList.add('selected');
         selectedCategory = category.id;
-        selectedCategoryName.textContent = category.name;
-        selectedCategoryName.style.opacity = '1';
+        
+        // Remove the extra category name display
+        selectedCategoryName.textContent = '';
+        selectedCategoryName.style.opacity = '0';
+        
         filterBusinesses();
     }
 
