@@ -39,14 +39,27 @@ header {
 }
 
 header h1 {
-    font-family: var(--heading-font), 'Noto Sans Devanagari', sans-serif;
-    font-size: 2.5rem;
+    font-family: 'Noto Sans Devanagari', 'Poppins', sans-serif;
+    font-size: 2.3rem;
     font-weight: 700;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-    background: linear-gradient(45deg, #ffffff, var(--primary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+    color: white;
+    text-align: center;
+    position: relative;
+    background: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: rgba(255,255,255,0.7);
+    border-radius: 2px;
 }
 
 .controls {
