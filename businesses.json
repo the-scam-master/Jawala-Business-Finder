@@ -48,7 +48,8 @@
         { "id": "makeup_artist", "name": "मेकअप आर्टिस्ट", "icon": "fa-solid fa-brush" },
         { "id": "book_publishers", "name": "पुस्तकांचे प्रकाशक", "icon": "fa-solid fa-book-open" },
         { "id": "libraries", "name": "वाचनालय", "icon": "fa-solid fa-books" },
-        { "id": "pottery", "name": "कुंभारकाम", "icon": "fa-solid fa-pot" }
+        { "id": "pottery", "name": "कुंभारकाम", "icon": "fa-solid fa-pot" },
+        { "id": "vermicelli_processing", "name": "सेवई उत्पादन", "icon": "fa-solid fa-wheat-awn" }
     ],
     "businesses": [
         { "id": "1", "category": "groceries", "shopName": "श्री राम किराणा स्टोर", "ownerName": "राहुल पाटील", "contactNumber": "9876543210" },
