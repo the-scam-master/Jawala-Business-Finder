@@ -5,8 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedCategoryName = document.getElementById('selectedCategoryName');
     let businessData = null;
     let selectedCategory = null;
-    let currentPage = 1;
-    const categoriesPerPage = 8; // Number of categories to display per page
 
     // Fetch business data
     async function fetchBusinessData() {
@@ -29,13 +27,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render category grid
     function renderCategoryGrid(categories) {
         categoryGrid.innerHTML = '';
+        
+        // Create "All Categories" item first
+        const allCategoriesItem = createAllCategoriesItem();
+        categoryGrid.appendChild(allCategoriesItem);
 
-        // Create "View All Categories" button
-        const viewAllCategoriesButton = createViewAllCategoriesButton();
-        categoryGrid.appendChild(viewAllCategoriesButton);
-
-        // Display initial categories
-        renderCategoriesPage(categories, currentPage);
+        // Then add other categories
+        categories.forEach(category => {
+            const categoryItem = createCategoryItem(category);
+            categoryGrid.appendChild(categoryItem);
+        });
     }
 
     // Create category item
@@ -54,38 +55,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return categoryItem;
     }
 
-    // Create "View All Categories" button
-    function createViewAllCategoriesButton() {
-        const viewAllCategoriesButton = document.createElement('div');
-        viewAllCategoriesButton.classList.add('category-item', 'view-all-button');
-        viewAllCategoriesButton.innerHTML = `
-            <i class="fas fa-chevron-down"></i>
+    // Create "All Categories" item
+    function createAllCategoriesItem() {
+        const allCategoriesItem = document.createElement('div');
+        allCategoriesItem.classList.add('category-item');
+        allCategoriesItem.innerHTML = `
+            <i class="fas fa-th-large"></i>
             <span>सर्व श्रेण्या</span>
         `;
 
-        viewAllCategoriesButton.addEventListener('click', () => {
-            viewAllCategories();
+        allCategoriesItem.addEventListener('click', () => {
+            selectAllCategories(allCategoriesItem);
         });
 
-        return viewAllCategoriesButton;
-    }
-
-    // Render categories for the current page
-    function renderCategoriesPage(categories, page) {
-        const startIndex = (page - 1) * categoriesPerPage;
-        const endIndex = startIndex + categoriesPerPage;
-        const paginatedCategories = categories.slice(startIndex, endIndex);
-
-        paginatedCategories.forEach(category => {
-            const categoryItem = createCategoryItem(category);
-            categoryGrid.appendChild(categoryItem);
-        });
-    }
-
-    // View all categories
-    function viewAllCategories() {
-        currentPage = 1;
-        renderCategoryGrid(businessData.all_categories);
+        return allCategoriesItem;
     }
 
     // Select category
@@ -95,11 +78,23 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         categoryItem.classList.add('selected');
         selectedCategory = category.id;
-
+        
         // Remove the extra category name display
         selectedCategoryName.textContent = '';
         selectedCategoryName.style.opacity = '0';
+        
+        filterBusinesses();
+    }
 
+    // Select all categories
+    function selectAllCategories(allCategoriesItem) {
+        document.querySelectorAll('.category-item').forEach(item =>
+            item.classList.remove('selected')
+        );
+        allCategoriesItem.classList.add('selected');
+        selectedCategory = null;
+        selectedCategoryName.textContent = '';
+        selectedCategoryName.style.opacity = '0';
         filterBusinesses();
     }
 
