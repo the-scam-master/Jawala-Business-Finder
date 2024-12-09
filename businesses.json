@@ -52,6 +52,7 @@
         { "id": "vermicelli_processing", "name": "शेवया उत्पादन", "icon": "fa-solid fa-wheat-awn" }
     ],
     "businesses": [
-        { "id": "1", "category": "vermicelli_processing", "shopName": "उन्नती गृह उद्योग", "ownerName": "माधुरी काळबांडे", "contactNumber": "8275838227" }
+        { "id": "1", "category": "vermicelli_processing", "shopName": "उन्नती गृह उद्योग", "ownerName": "माधुरी काळबांडे", "contactNumber": "8275838227" },
+        { "id": "2", "category": "automobile", "shopName": "पार्वती ऑटोमोबाइल", "ownerName": "गोलू काळबांडे", "contactNumber": "9922287156" }
     ]
 }
