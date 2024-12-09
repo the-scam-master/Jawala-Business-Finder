@@ -370,15 +370,15 @@ footer .copyright {
     footer {
         padding: 15px 15px;
     }
-
+    
     footer h3 {
         font-size: 1.3rem;
     }
-
+    
     footer .footer-links {
         gap: 15px;
     }
-
+    
     footer .footer-links i {
         font-size: 1.2rem;
     }
