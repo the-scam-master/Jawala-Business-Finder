@@ -52,10 +52,6 @@
         { "id": "vermicelli_processing", "name": "सेवई उत्पादन", "icon": "fa-solid fa-wheat-awn" }
     ],
     "businesses": [
-        { "id": "1", "category": "groceries", "shopName": "श्री राम किराणा स्टोर", "ownerName": "राहुल पाटील", "contactNumber": "9876543210" },
-        { "id": "2", "category": "electronics", "shopName": "न्यू टेक इलेक्ट्रॉनिक्स", "ownerName": "सुरेश देशमुख", "contactNumber": "9876543211" },
-        { "id": "3", "category": "tailors", "shopName": "अप्पा टेलर", "ownerName": "अप्पा पाटील", "contactNumber": "9876543212" },
-        { "id": "4", "category": "agriculture", "shopName": "शेतकरी सेवा केंद्र", "ownerName": "रामू शिंदे", "contactNumber": "9876543213" },
-        { "id": "5", "category": "medical", "shopName": "शिवम मेडिकल", "ownerName": "शिवाजी मोरे", "contactNumber": "9876543214" }
+        { "id": "1", "category": "vermicelli_processing", "shopName": "उन्नती गृह उद्योग", "ownerName": "मधुरी काळबंडे", "contactNumber": "8275838227" }
     ]
 }
