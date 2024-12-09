@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render category grid
     function renderCategoryGrid(categories) {
         categoryGrid.innerHTML = '';
-        
+
         // Create "All Categories" item first
         const allCategoriesItem = createAllCategoriesItem();
         categoryGrid.appendChild(allCategoriesItem);
@@ -78,11 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         categoryItem.classList.add('selected');
         selectedCategory = category.id;
-        
+
         // Remove the extra category name display
         selectedCategoryName.textContent = '';
         selectedCategoryName.style.opacity = '0';
-        
+
         filterBusinesses();
     }
 
