@@ -85,8 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // View all categories
     function viewAllCategories() {
         currentPage = 1;
-        renderCategoryGrid(businessData.categories);
-        renderCategoriesPage(businessData.categories, currentPage);
+        renderCategoryGrid(businessData.all_categories);
     }
 
     // Select category
