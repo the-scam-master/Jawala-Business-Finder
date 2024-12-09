@@ -20,44 +20,45 @@
 
     <!-- Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300;400;600;700&family=Noto+Sans+Devanagari:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Structured Data for Local Business -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "जवळा गाव व्यवसाय निर्देशिका",
-        "description": "गावातील विविध सेवा व व्यवसायांबद्दल माहिती मिळवा. A comprehensive local business directory for Jawala village.",
-        "url": "https://jawala-business-finder.vercel.app/",
-        "publisher": {
-            "@type": "Person",
-            "name": "Tanmay Kalbande",
-            "email": "tanmaykalbande@gmail.com"
-        },
-        "applicationCategory": "Business Directory",
-        "operatingSystem": "All",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "INR"
-        },
-        "keywords": [
-            "local business",
-            "village directory",
-            "business finder",
-            "जवळा गाव",
-            "व्यवसाय निर्देशिका"
-        ],
-        "inLanguage": ["mr", "en"],
-        "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://jawala-business-finder.vercel.app/?search={search_term}",
-            "query-input": "required name=search_term"
-        }
+<!-- Structured Data for Local Business -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "जवळा गाव व्यवसाय निर्देशिका",
+    "description": "गावातील विविध सेवा व व्यवसायांबद्दल माहिती मिळवा. A comprehensive local business directory for Jawala village.",
+    "url": "https://jawala-business-finder.vercel.app/",
+    "publisher": {
+        "@type": "Person",
+        "name": "Tanmay Kalbande",
+        "email": "tanmaykalbande@gmail.com"
+    },
+    "applicationCategory": "Business Directory",
+    "operatingSystem": "All",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR"
+    },
+    "keywords": [
+        "local business",
+        "village directory",
+        "business finder",
+        "जवळा गाव",
+        "व्यवसाय निर्देशिका"
+    ],
+    "inLanguage": ["mr", "en"],
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://jawala-business-finder.vercel.app/?search={search_term}",
+        "query-input": "required name=search_term"
     }
-    </script>
+}
+</script>
 
 </head>
 <body>
@@ -80,7 +81,7 @@
         <div id="businessList" class="business-grid" role="main"></div>
     </div>
 
-    <footer>
+<footer>
         <div class="footer-content">
             <h3>जवळा गाव व्यवसाय निर्देशिका</h3>
             <p>आमच्या गावातील व्यवसायांना जोडणारा एक सुलभ आणि सोपा मार्ग</p>
@@ -95,74 +96,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        const categories = [
-            { "id": "medical", "name": "वैद्यकीय सेवा", "icon": "local_hospital" },
-            { "id": "government_services", "name": "सरकारी सेवा", "icon": "account_balance" },
-            { "id": "police_services", "name": "पोलीस सेवा", "icon": "badge" },
-            { "id": "groceries", "name": "किराणा दुकाने", "icon": "local_grocery_store" },
-            { "id": "restaurants", "name": "रेस्टोरंट", "icon": "restaurant" },
-            { "id": "agriculture", "name": "शेती संबंधित", "icon": "nature_people" },
-            { "id": "transportation", "name": "वाहतूक सेवा", "icon": "directions_bus" },
-            { "id": "electronics", "name": "इलेक्ट्रॉनिक्स", "icon": "devices_other" },
-            { "id": "hardware", "name": "हार्डवेयर दुकान", "icon": "build" },
-            { "id": "education", "name": "शैक्षणिक सेवा", "icon": "school" },
-            { "id": "dairy", "name": "दुग्ध उत्पादन", "icon": "local_drink" },
-            { "id": "clothing", "name": "कपडे दुकान", "icon": "checkroom" },
-            { "id": "tailors", "name": "टेलर", "icon": "checkroom" },
-            { "id": "salons", "name": "सलून", "icon": "content_cut" },
-            { "id": "local_administration", "name": "स्थानिक प्रशासन", "icon": "location_city" },
-            { "id": "stationery", "name": "स्टेशनरी", "icon": "edit" },
-            { "id": "fruits_vegetables", "name": "फळे व भाजीपाला विक्रेते", "icon": "local_florist" },
-            { "id": "water_services", "name": "पाणी पुरवठा", "icon": "opacity" },
-            { "id": "mobile_accessories", "name": "मोबाईल व अॅक्सेसरीज", "icon": "smartphone" },
-            { "id": "bakeries_sweets", "name": "बेकरी आणि मिठाई", "icon": "cake" },
-            { "id": "pharmacies", "name": "औषध निर्माणशाळा", "icon": "local_pharmacy" },
-            { "id": "automobile", "name": "ऑटोमोबाइल सर्विस", "icon": "directions_car" },
-            { "id": "furniture", "name": "फर्निचर दुकान", "icon": "weekend" },
-            { "id": "jewelry", "name": "सोने व दागिने", "icon": "diamond" },
-            { "id": "agriculture_centers", "name": "कृषी केंद्र", "icon": "eco" },
-            { "id": "opticals", "name": "ऑप्टिकल्स", "icon": "remove_red_eye" },
-            { "id": "paint_decor", "name": "पेंट व डेकोर", "icon": "format_paint" },
-            { "id": "internet_providers", "name": "इंटरनेट सेवा प्रदाते", "icon": "wifi" },
-            { "id": "media_printing", "name": "मीडिया आणि प्रिंटिंग", "icon": "print" },
-            { "id": "retail_merchants", "name": "किरकोळ व्यापारी", "icon": "store" },
-            { "id": "gas_agencies", "name": "गॅस एजन्सी", "icon": "local_gas_station" },
-            { "id": "insurance_services", "name": "विमा सेवा", "icon": "receipt" },
-            { "id": "bookstores", "name": "बुकस्टोर्स", "icon": "local_library" },
-            { "id": "second_hand_goods", "name": "जुने सामान विक्री", "icon": "sync" },
-            { "id": "clothing_rental", "name": "कपडे भाड्याने देणारे", "icon": "checkroom" },
-            { "id": "tour_travel", "name": "टूर आणि ट्रॅव्हल्स", "icon": "flight" },
-            { "id": "music_instruments", "name": "संगीत व वाद्यवृंद सेवा", "icon": "music_note" },
-            { "id": "pets_services", "name": "पाळीव प्राणी संबंधित", "icon": "pets" },
-            { "id": "pest_control", "name": "पेस्ट कंट्रोल सेवा", "icon": "bug_report" },
-            { "id": "water_purifiers", "name": "वॉटर प्युरिफायर सेवा", "icon": "local_drink" },
-            { "id": "fitness", "name": "फिटनेस सेंटर", "icon": "fitness_center" },
-            { "id": "self_drive", "name": "सेल्फ-ड्रायव्ह कार/बाईक सेवा", "icon": "drive_eta" },
-            { "id": "cooling_services", "name": "कूलिंग सेवा", "icon": "ac_unit" },
-            { "id": "flowers", "name": "फुलांचे दुकान", "icon": "local_florist" },
-            { "id": "photography", "name": "छायाचित्रण सेवा", "icon": "photo_camera" },
-            { "id": "makeup_artist", "name": "मेकअप आर्टिस्ट", "icon": "face" },
-            { "id": "book_publishers", "name": "पुस्तकांचे प्रकाशक", "icon": "menu_book" },
-            { "id": "libraries", "name": "वाचनालय", "icon": "local_library" },
-            { "id": "pottery", "name": "कुंभारकाम", "icon": "brush" }
-        ];
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const categoryGrid = document.getElementById('categoryGrid');
-
-            categories.forEach(category => {
-                const categoryDiv = document.createElement('div');
-                categoryDiv.className = 'category';
-                categoryDiv.innerHTML = `
-                    <i class="material-icons">${category.icon}</i>
-                    <span>${category.name}</span>
-                `;
-                categoryGrid.appendChild(categoryDiv);
-            });
-        });
-    </script>
 
     <script src="script.js"></script>
 </body>
