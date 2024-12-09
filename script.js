@@ -173,3 +173,103 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize app
     fetchBusinessData();
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (keep existing code)
+
+    // Modify createAllCategoriesItem function
+    function createAllCategoriesItem() {
+        const allCategoriesItem = document.createElement('div');
+        allCategoriesItem.classList.add('category-item', 'all-categories-dropdown');
+        allCategoriesItem.innerHTML = `
+            <i class="fas fa-th-large"></i>
+            <span>सर्व श्रेण्या</span>
+            <i class="fas fa-chevron-down dropdown-icon"></i>
+        `;
+
+        const dropdownMenu = document.createElement('div');
+        dropdownMenu.classList.add('dropdown-menu');
+        dropdownMenu.style.display = 'none';
+
+        // Populate dropdown with all categories
+        businessData.categories.forEach(category => {
+            const dropdownItem = document.createElement('div');
+            dropdownItem.classList.add('dropdown-item');
+            dropdownItem.innerHTML = `
+                <i class="${category.icon}"></i>
+                <span>${category.name}</span>
+            `;
+
+            dropdownItem.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent event from bubbling
+                selectCategory(allCategoriesItem, category);
+                dropdownMenu.style.display = 'none';
+            });
+
+            dropdownMenu.appendChild(dropdownItem);
+        });
+
+        allCategoriesItem.appendChild(dropdownMenu);
+
+        // Toggle dropdown on click
+        allCategoriesItem.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent document click from immediately closing
+            const isVisible = dropdownMenu.style.display === 'block';
+            dropdownMenu.style.display = isVisible ? 'none' : 'block';
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            dropdownMenu.style.display = 'none';
+        });
+
+        return allCategoriesItem;
+    }
+
+    // Add CSS for dropdown in script (you can move this to your CSS file)
+    const style = document.createElement('style');
+    style.textContent = `
+        .all-categories-dropdown {
+            position: relative;
+        }
+        .dropdown-icon {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        .all-categories-dropdown.active .dropdown-icon {
+            transform: rotate(180deg);
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10;
+            margin-top: 10px;
+        }
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-item:hover {
+            background-color: #f0f0f0;
+        }
+        .dropdown-item i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Rest of the existing code remains the same
+});
