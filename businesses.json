@@ -10,9 +10,6 @@
         { "id": "electronics", "name": "इलेक्ट्रॉनिक्स", "icon": "fa-solid fa-plug" },
         { "id": "hardware", "name": "हार्डवेयर दुकान", "icon": "fa-solid fa-screwdriver-wrench" },
         { "id": "education", "name": "शैक्षणिक सेवा", "icon": "fa-solid fa-graduation-cap" },
-        { "id": "view_all", "name": "View All Categories", "icon": "fa-solid fa-chevron-down" }
-    ],
-    "all_categories": [
         { "id": "dairy", "name": "दुग्ध उत्पादन", "icon": "fas fa-cheese" },
         { "id": "clothing", "name": "कपडे दुकान", "icon": "fa-solid fa-tags" },
         { "id": "tailors", "name": "टेलर", "icon": "fa-solid fa-shirt" },
