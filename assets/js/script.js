@@ -6,28 +6,65 @@ document.addEventListener('DOMContentLoaded', () => {
     let businessData = null;
     let selectedCategory = null;
 
-    // Fetch business data
-    async function fetchBusinessData() {
-        try {
-            const response = await fetch('./data/businesses.json');
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            businessData = await response.json();
 
-            // Check if categories and businesses exist
-            if (!businessData.categories || !businessData.businesses) {
-                throw new Error("Invalid data format: Missing categories or businesses");
-            }
 
-            renderCategoryGrid(businessData.categories);
-            renderBusinesses(businessData.businesses);
-        } catch (error) {
-            console.error('Error fetching business data:', error);
-            businessList.innerHTML = `
-                <div class="no-results">
-                    <p>डेटा लोड करण्यात त्रुटी आली: ${error.message}</p>
-                </div>`;
+// Replace problematic icons with Material Icons equivalents
+function updateIcons(categories) {
+    const iconReplacements = {
+        "mobile_accessories": "smartphone",
+        "vermicelli_processing": "restaurant",
+        "pottery": "emoji_objects",
+        "self_help_groups": "groups",
+        "blacksmith_services": "construction"
+    };
+
+    categories.forEach(category => {
+        if (iconReplacements[category.id]) {
+            category.icon = `material-icons ${iconReplacements[category.id]}`;
         }
+    });
+}
+
+// Fetch business data
+async function fetchBusinessData() {
+    try {
+        const response = await fetch('./data/businesses.json');
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        businessData = await response.json();
+
+        // Update icons for specific categories
+        updateIcons(businessData.categories);
+
+        renderCategoryGrid(businessData.categories);
+        renderBusinesses(businessData.businesses);
+    } catch (error) {
+        console.error('Error fetching business data:', error);
+        businessList.innerHTML = `
+            <div class="no-results">
+                <p>डेटा लोड करण्यात त्रुटी आली: ${error.message}</p>
+            </div>`;
     }
+}
+
+function createCategoryItem(category) {
+    const categoryItem = document.createElement('div');
+    categoryItem.classList.add('category-item');
+    categoryItem.innerHTML = `
+        ${category.icon.includes('material-icons')
+            ? `<i class="material-icons">${category.icon.split(' ')[1]}</i>`
+            : `<i class="${category.icon}"></i>`}
+        <span>${category.name}</span>
+    `;
+
+    categoryItem.addEventListener('click', () => {
+        selectCategory(categoryItem, category);
+    });
+
+    return categoryItem;
+}
+
+
+    
 
     // Render category grid
     function renderCategoryGrid(categories) {
