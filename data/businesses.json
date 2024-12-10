@@ -6,7 +6,7 @@
         { "id": "fruits_vegetables", "name": "फळे व भाजीपाला विक्रेते", "icon": "fas fa-apple-alt" },
         { "id": "dairy", "name": "दुग्ध उत्पादन", "icon": "fa-brands fa-bilibili" },
         { "id": "government_services", "name": "सरकारी सेवा", "icon": "fas fa-institution" },
-        { "id": "police_services", "name": "पोलीस सेवा", "icon": "fas fa-shield-alt" },
+        { "id": "police_services", "name": "पोलीस सेवा", "icon": "fa-solid fa-id-badge" },
         { "id": "transportation", "name": "वाहतूक सेवा", "icon": "fa-solid fa-bus" },
         { "id": "automobile", "name": "ऑटोमोबाइल सर्विस", "icon": "fas fa-car" },
         { "id": "water_services", "name": "पाणी पुरवठा", "icon": "fa-solid fa-faucet-dript" },
