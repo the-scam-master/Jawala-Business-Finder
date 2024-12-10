@@ -1,7 +1,7 @@
 {
     "categories": [
         { "id": "medical", "name": "वैद्यकीय सेवा", "icon": "fa-solid fa-hospital" },
-        { "id": "pharmacies", "name": "औषध निर्माणशाळा", "icon": "fa-solid fa-pills" },
+        { "id": "pharmacies", "name": "औषधालय", "icon": "fa-solid fa-pills" },
         { "id": "groceries", "name": "किराणा दुकाने", "icon": "fa-solid fa-cart-shopping" },
         { "id": "fruits_vegetables", "name": "फळे व भाजीपाला विक्रेते", "icon": "fas fa-apple-alt" },
         { "id": "dairy", "name": "दुग्ध उत्पादन", "icon": "fa-solid fa-cow" },
