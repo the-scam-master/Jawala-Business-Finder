@@ -8,6 +8,7 @@
         { "id": "government_services", "name": "सरकारी सेवा", "icon": "fas fa-institution" },
         { "id": "police_services", "name": "पोलीस सेवा", "icon": "fas fa-shield-alt" },
         { "id": "transportation", "name": "वाहतूक सेवा", "icon": "fa-solid fa-bus" },
+        { "id": "automobile", "name": "ऑटोमोबाइल सर्विस", "icon": "fas fa-car" },
         { "id": "water_services", "name": "पाणी पुरवठा", "icon": "fas fa-tint" },
         { "id": "restaurants", "name": "रेस्टोरंट", "icon": "fa-solid fa-utensils" },
         { "id": "local_administration", "name": "स्थानिक प्रशासन", "icon": "fa-solid fa-landmark" },
