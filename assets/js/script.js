@@ -13,16 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             businessData = await response.json();
 
-            if (!businessData.categories || !businessData.businesses) {
-                throw new Error("Invalid data format: Missing categories or businesses");
-            }
-
             renderCategoryGrid(businessData.categories);
             renderBusinesses(businessData.businesses);
         } catch (error) {
             console.error('Error fetching business data:', error);
             businessList.innerHTML = `
-                <div class="no-results" role="alert">
+                <div class="no-results">
                     <p>डेटा लोड करण्यात त्रुटी आली: ${error.message}</p>
                 </div>`;
         }
@@ -44,11 +40,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create category item
     function createCategoryItem(category) {
-        const categoryItem = document.createElement('button');
+        const categoryItem = document.createElement('div');
         categoryItem.classList.add('category-item');
-        categoryItem.setAttribute('aria-label', `Select ${category.name}`);
         categoryItem.innerHTML = `
-            <i class="${category.icon}" aria-hidden="true"></i>
+            <i class="${category.icon}"></i>
             <span>${category.name}</span>
         `;
 
@@ -61,11 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Create "All Categories" item
     function createAllCategoriesItem() {
-        const allCategoriesItem = document.createElement('button');
+        const allCategoriesItem = document.createElement('div');
         allCategoriesItem.classList.add('category-item');
-        allCategoriesItem.setAttribute('aria-label', 'Select all categories');
         allCategoriesItem.innerHTML = `
-            <i class="fas fa-th-large" aria-hidden="true"></i>
+            <i class="fas fa-th-large"></i>
             <span>सर्व श्रेण्या</span>
         `;
 
@@ -84,9 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryItem.classList.add('selected');
         selectedCategory = category.id;
 
-        selectedCategoryName.textContent = '';
-        selectedCategoryName.style.opacity = '0';
-
         filterBusinesses();
     }
 
@@ -98,21 +89,16 @@ document.addEventListener('DOMContentLoaded', () => {
         allCategoriesItem.classList.add('selected');
         selectedCategory = null;
 
-        selectedCategoryName.textContent = '';
-        selectedCategoryName.style.opacity = '0';
-
         filterBusinesses();
     }
 
     // Filter and render businesses
     function filterBusinesses() {
-        const searchTerm = searchInput.value.trim();
+        const searchTerm = searchInput.value.trim().toLowerCase();
         const filteredBusinesses = businessData.businesses.filter(business => {
             const matchesCategory = !selectedCategory || business.category === selectedCategory;
-            const matchesSearch = !searchTerm ||
-                Object.values(business).some(value =>
-                    value.toString().toLowerCase().includes(searchTerm.toLowerCase())
-                );
+            const matchesSearch = !searchTerm || Object.values(business)
+                .some(value => value.toString().toLowerCase().includes(searchTerm));
             return matchesCategory && matchesSearch;
         });
         renderBusinesses(filteredBusinesses);
@@ -123,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         businessList.innerHTML = '';
 
         if (businesses.length === 0) {
-            businessList.innerHTML = '<div class="no-results" role="alert"><p>कोणतेही व्यवसाय सापडले नाहीत.</p></div>';
+            businessList.innerHTML = '<div class="no-results"><p>कोणतेही व्यवसाय सापडले नाहीत.</p></div>';
             return;
         }
 
@@ -135,8 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (const categoryId in groupedBusinesses) {
             const category = businessData.categories.find(cat => cat.id === categoryId);
-            const categoryHeader = createCategoryHeader(category);
-            businessList.appendChild(categoryHeader);
+            if (category) {
+                const categoryHeader = createCategoryHeader(category);
+                businessList.appendChild(categoryHeader);
+            }
 
             groupedBusinesses[categoryId].forEach(business => {
                 const businessCard = createBusinessCard(business);
@@ -149,9 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createCategoryHeader(category) {
         const categoryHeader = document.createElement('div');
         categoryHeader.classList.add('category-header');
-        categoryHeader.setAttribute('role', 'heading');
-        categoryHeader.setAttribute('aria-level', '2');
-        categoryHeader.innerHTML = `<i class="${category.icon}" aria-hidden="true"></i> ${category.name}`;
+        categoryHeader.innerHTML = `<i class="${category.icon}"></i> ${category.name}`;
         return categoryHeader;
     }
 
@@ -169,10 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Format phone number for better readability
     function formatPhoneNumber(phoneNumber) {
-        if (phoneNumber.length === 10) {
-            return `${phoneNumber.slice(0, 4)} ${phoneNumber.slice(4, 7)} ${phoneNumber.slice(7)}`;
-        }
-        return phoneNumber;
+        return phoneNumber.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3');
     }
 
     // Get unique categories (to avoid duplicates)
@@ -187,13 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle search input
     searchInput.addEventListener('input', filterBusinesses);
-
-    // Ensure keyboard navigation works
-    categoryGrid.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.target.click();
-        }
-    });
 
     // Initialize app
     fetchBusinessData();
