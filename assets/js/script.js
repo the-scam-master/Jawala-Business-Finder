@@ -13,6 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             businessData = await response.json();
 
+            // Check if categories and businesses exist
+            if (!businessData.categories || !businessData.businesses) {
+                throw new Error("Invalid data format: Missing categories or businesses");
+            }
+
             renderCategoryGrid(businessData.categories);
             renderBusinesses(businessData.businesses);
         } catch (error) {
@@ -28,9 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCategoryGrid(categories) {
         categoryGrid.innerHTML = '';
 
+        // Create "All Categories" item first
         const allCategoriesItem = createAllCategoriesItem();
         categoryGrid.appendChild(allCategoriesItem);
 
+        // Then add other categories
         const uniqueCategories = getUniqueCategories(categories);
         uniqueCategories.forEach(category => {
             const categoryItem = createCategoryItem(category);
@@ -70,6 +77,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return allCategoriesItem;
     }
 
+    // Get unique categories to avoid duplicates
+    function getUniqueCategories(categories) {
+        const seen = new Set();
+        return categories.filter(category => {
+            if (!seen.has(category.id)) {
+                seen.add(category.id);
+                return true;
+            }
+            return false;
+        });
+    }
+
     // Select category
     function selectCategory(categoryItem, category) {
         document.querySelectorAll('.category-item').forEach(item =>
@@ -77,6 +96,10 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         categoryItem.classList.add('selected');
         selectedCategory = category.id;
+
+        // Remove the extra category name display
+        selectedCategoryName.textContent = '';
+        selectedCategoryName.style.opacity = '0';
 
         filterBusinesses();
     }
@@ -88,7 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
         );
         allCategoriesItem.classList.add('selected');
         selectedCategory = null;
-
+        selectedCategoryName.textContent = '';
+        selectedCategoryName.style.opacity = '0';
         filterBusinesses();
     }
 
@@ -97,8 +121,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const searchTerm = searchInput.value.trim().toLowerCase();
         const filteredBusinesses = businessData.businesses.filter(business => {
             const matchesCategory = !selectedCategory || business.category === selectedCategory;
-            const matchesSearch = !searchTerm || Object.values(business)
-                .some(value => value.toString().toLowerCase().includes(searchTerm));
+            const matchesSearch = !searchTerm ||
+                [business.shopName, business.ownerName, business.contactNumber]
+                    .some(value => value.toLowerCase().includes(searchTerm));
             return matchesCategory && matchesSearch;
         });
         renderBusinesses(filteredBusinesses);
@@ -121,10 +146,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (const categoryId in groupedBusinesses) {
             const category = businessData.categories.find(cat => cat.id === categoryId);
-            if (category) {
-                const categoryHeader = createCategoryHeader(category);
-                businessList.appendChild(categoryHeader);
-            }
+            const categoryHeader = createCategoryHeader(category);
+            businessList.appendChild(categoryHeader);
 
             groupedBusinesses[categoryId].forEach(business => {
                 const businessCard = createBusinessCard(business);
@@ -155,17 +178,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Format phone number for better readability
     function formatPhoneNumber(phoneNumber) {
-        return phoneNumber.replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3');
-    }
-
-    // Get unique categories (to avoid duplicates)
-    function getUniqueCategories(categories) {
-        const seen = new Set();
-        return categories.filter(category => {
-            if (seen.has(category.id)) return false;
-            seen.add(category.id);
-            return true;
-        });
+        if (phoneNumber.length === 10) {
+            return `${phoneNumber.slice(0, 4)} ${phoneNumber.slice(4, 7)} ${phoneNumber.slice(7)}`;
+        }
+        return phoneNumber;
     }
 
     // Handle search input
